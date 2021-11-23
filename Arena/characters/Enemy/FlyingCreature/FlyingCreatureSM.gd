@@ -3,6 +3,7 @@ extends StateMachine
 func _init() -> void:
 	_add_state("chase")
 	_add_state("hurt")
+	_add_state("dead")
 	
 func _ready() -> void:
 	set_state(states.chase)
@@ -19,10 +20,12 @@ func _get_transition() -> int:
 				return states.chase
 	return -1
 
-func _enter_state(_previous_state: int, _new_state: int) -> void:
-	print(_new_state)
-	match _new_state:
+func _enter_state(_previous_state: int, new_state: int) -> void:
+	print(new_state)
+	match new_state:
 		states.chase:
 			animation_player.play("fly")
 		states.hurt:
 			animation_player.play("hurt")
+		states.dead:
+			animation_player.play("death")

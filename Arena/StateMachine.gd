@@ -28,7 +28,7 @@ func set_state(new_state: int) -> void:
 	_exit_state(state)
 	previous_state = state
 	state = new_state
-	_enter_state(new_state, previous_state)
+	_enter_state(previous_state, new_state)
 
 func _enter_state(_previous_state: int, _new_state: int) -> void:
 	pass
