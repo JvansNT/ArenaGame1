@@ -13,6 +13,9 @@ var distance_to_player: float
 
 onready var attack_timer: Timer = get_node("AttackTimer")
 
+func _ready():
+	print("I am a goblin, rawrrr")
+
 func _on_PathTimer_timeout() -> void:
 	if is_instance_valid(player):
 		distance_to_player = (player.position - global_position).length()

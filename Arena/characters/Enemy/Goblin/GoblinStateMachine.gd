@@ -28,7 +28,7 @@ func _get_transition() -> int:
 	return -1
 
 func _enter_state(_previous_state: int, new_state: int) -> void:
-	print(new_state)
+	#print(new_state)
 	match new_state:
 		states.idle:
 			animation_player.play("idle")
