@@ -114,3 +114,17 @@ position = Vector2( 214.012, 99.0598 )
 [node name="Goblin" parent="." instance=ExtResource( 8 )]
 position = Vector2( 176.976, 191.606 )
 hp = 2
+
+[node name="Goblin2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 321.861, 144.884 )
+hp = 2
+
+[node name="Goblin3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 88.724, 116.568 )
+hp = 2
+
+[node name="Goblin4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 253.902, 208.596 )
+hp = 2
+
+[connection signal="hp_changed" from="Player" to="UI" method="_on_Player_hp_changed"]
