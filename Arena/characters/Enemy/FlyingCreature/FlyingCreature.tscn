@@ -8,57 +8,57 @@
 [ext_resource path="res://characters/Enemy/FlyingCreature/FlyingCreature.gd" type="Script" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 5 )
 region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 5 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 5 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 5 )
-region = Rect2( 48, 0, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "fly",
+"name": "Death",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
-"name": "Death",
+"name": "fly",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=10]
 radius = 3.16228
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=11]
 radius = 4.0
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=12]
 resource_name = "death"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
@@ -123,7 +123,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=13]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -151,7 +151,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -190,18 +190,20 @@ tracks/2/keys = {
 }
 
 [node name="FlyingCreature" instance=ExtResource( 1 )]
+collision_layer = 12
+collision_mask = 12
 script = ExtResource( 6 )
 
 [node name="StateMachine" parent="." index="0"]
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="1"]
-frames = SubResource( 5 )
+frames = SubResource( 9 )
 animation = "fly"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 0
@@ -210,9 +212,9 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 0, 1 )
-shape = SubResource( 7 )
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" parent="." index="4"]
-anims/death = SubResource( 14 )
-anims/fly = SubResource( 8 )
-anims/hurt = SubResource( 9 )
+anims/death = SubResource( 12 )
+anims/fly = SubResource( 13 )
+anims/hurt = SubResource( 14 )

@@ -1,8 +1,8 @@
 extends StateMachine
 
 func _init() -> void:
-	_add_state("move")
 	_add_state("idle")
+	_add_state("move")
 	_add_state("hurt")
 	_add_state("dead")
 
@@ -14,7 +14,7 @@ func _state_logic(_delta: float) -> void:
 		parent.chase()
 		parent.move()
 
-func _get_translation() -> int:
+func _get_transition() -> int:
 	match state:
 		states.idle:
 			if parent.distance_to_player > parent.MAX_DISTANCE_TO_PLAYER or parent.distance_to_player < parent.MIN_DISTANCE_TO_PLAYER:
