@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://weapons/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://new_shader.gdshader" type="Shader" id=2]
+[ext_resource path="res://weapons/weaponHitbox.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/active = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 0.3
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 80.0
+tangential_accel_random = 0.2
+
+[sub_resource type="Animation" id=3]
+resource_name = "Cancel"
+
+[sub_resource type="Animation" id=4]
+resource_name = "Charge"
+
+[sub_resource type="Animation" id=5]
+resource_name = "Strong_attack"
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Node" type="Node2D" parent="."]
+rotation = 10.9956
+
+[node name="Sprite" type="Sprite" parent="Node"]
+material = SubResource( 1 )
+position = Vector2( 7, 3 )
+rotation = -0.785398
+offset = Vector2( 5, -4 )
+
+[node name="Hitbox" type="Area2D" parent="Node/Sprite"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node/Sprite/Hitbox"]
+position = Vector2( 4.89071, -3.82727 )
+rotation = 0.785398
+disabled = true
+
+[node name="ChargeParticles" type="Particles2D" parent="Node/Sprite/Hitbox/CollisionShape2D2"]
+position = Vector2( -0.845856, -1.12751 )
+rotation = -0.785398
+emitting = false
+amount = 15
+lifetime = 0.6
+process_material = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cancel = SubResource( 3 )
+anims/Charge = SubResource( 4 )
+anims/Strong_attack = SubResource( 5 )
+
+[connection signal="area_entered" from="Node/Sprite/Hitbox" to="Node/Sprite/Hitbox" method="_on_Hitbox_area_entered"]

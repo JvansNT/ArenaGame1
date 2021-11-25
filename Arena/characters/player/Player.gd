@@ -1,8 +1,11 @@
 extends Character
 
-onready var sword: Node2D = get_node("Sword")
-onready var sword_hit: Area2D = get_node("Sword/Node/Sprite/Hitbox")
-onready var sword_animation_player:AnimationPlayer = sword.get_node("SwordAnimationPlayer")
+var current_weapon: Node2D
+
+onready var weapons: Node2D = get_node("weapons")
+
+func _ready() -> void:
+	current_weapon = weapons.get_child(0)
 
 func _process(_delta: float) -> void:
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -12,12 +15,7 @@ func _process(_delta: float) -> void:
 	elif mouse_direction.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 		
-	sword.rotation = mouse_direction.angle()
-	sword_hit.knockback_direction = mouse_direction
-	if sword.scale.y == 1 and mouse_direction.x < 0:
-		sword.scale.y = -1
-	elif sword.scale.y == -1 and mouse_direction.x > 0:
-		sword.scale.y = 1
+	current_weapon.move(mouse_direction)
 
 func get_input() -> void:
 	mov_direction = Vector2.ZERO
@@ -30,5 +28,7 @@ func get_input() -> void:
 	if Input.is_action_pressed("ui_up"):
 		mov_direction += Vector2.UP
 		
-	if Input.is_action_just_pressed("ui_attack") and not sword_animation_player.is_playing():
-		sword_animation_player.play("attack")
+	current_weapon.get_input()
+	
+func cancel_attack() -> void:
+	current_weapon.cancel_attack
