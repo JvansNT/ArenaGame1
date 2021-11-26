@@ -58,10 +58,20 @@ amount = 15
 lifetime = 0.6
 process_material = SubResource( 2 )
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 3 )
 anims/cancel_attack = SubResource( 4 )
 anims/charge = SubResource( 5 )
 anims/strong_attack = SubResource( 6 )
 
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="area_entered" from="Node/Sprite/Hitbox" to="Node/Sprite/Hitbox" method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

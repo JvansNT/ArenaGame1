@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/heroes/knight/weapon_sword_1.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 4.62904
 height = 7.50366
 
-[sub_resource type="Animation" id=2]
-resource_name = "Animation"
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.39119
+height = 10.2975
+
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.01
 tracks/0/type = "value"
@@ -97,7 +100,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Node/Sprite:rotation_degrees")
@@ -172,7 +175,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Node/Sprite:material:shader_param/active")
@@ -223,8 +226,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "heavy_attack"
+[sub_resource type="Animation" id=6]
 length = 2.0
 step = 0.01
 tracks/0/type = "value"
@@ -298,7 +300,7 @@ texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="Node/Sprite/Hitbox" index="0"]
 position = Vector2( 6.47991, -5.41647 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="SlashSprite" type="Sprite" parent="." index="1"]
 visible = false
@@ -313,8 +315,13 @@ texture = ExtResource( 2 )
 hframes = 3
 frame = 2
 
-[node name="AnimationPlayer" parent="." index="2"]
-anims/attack = SubResource( 2 )
-anims/cancel_attack = SubResource( 3 )
-anims/charge = SubResource( 4 )
-anims/heavy_attack = SubResource( 5 )
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2( -3.09027, -7.77248 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/attack = SubResource( 3 )
+anims/cancel_attack = SubResource( 4 )
+anims/charge = SubResource( 5 )
+anims/heavy_attack = SubResource( 6 )
