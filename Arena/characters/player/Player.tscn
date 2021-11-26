@@ -5,7 +5,7 @@
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/heroes/knight/knight_run_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=4]
 [ext_resource path="res://characters/player/StateMachine.gd" type="Script" id=5]
-[ext_resource path="res://weapons/sword.tscn" type="PackedScene" id=6]
+[ext_resource path="res://weapons/Hand.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -265,4 +265,4 @@ anims/Move = SubResource( 22 )
 
 [node name="weapons" type="Node2D" parent="." index="4"]
 
-[node name="sword" parent="weapons" index="0" instance=ExtResource( 6 )]
+[node name="Hand" parent="weapons" index="0" instance=ExtResource( 6 )]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/full tilemap.png" type="Texture" id=1]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/ui (new)/White_health_ui.png.png" type="Texture" id=6]
 [ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/ui (new)/health_ui.png" type="Texture" id=7]
 [ext_resource path="res://Utils/FlyingCreature_spawn.tscn" type="PackedScene" id=8]
-[ext_resource path="res://weapons/bow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/sword.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/bow.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -119,8 +120,12 @@ position = Vector2( 57.211, 82.6381 )
 [node name="Goblin_spawn" parent="." instance=ExtResource( 3 )]
 position = Vector2( 411.671, 89.4217 )
 
-[node name="Bow" parent="." instance=ExtResource( 9 )]
+[node name="Bow" parent="." instance=ExtResource( 10 )]
 position = Vector2( 143.469, 149.604 )
+on_floor = true
+
+[node name="sword" parent="." instance=ExtResource( 9 )]
+position = Vector2( 345.915, 191.763 )
 on_floor = true
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_Player_hp_changed"]

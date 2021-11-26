@@ -14,6 +14,10 @@ func _ready() -> void:
 		player_detector.set_collision_mask_bit(1, false)
 
 func get_input() -> void:
+	if Input.is_action_just_pressed("ui_special") and not animation_player.is_playing():
+		animation_player.play("special")
+	elif Input.is_action_just_released("ui_special"):
+			animation_player.play("attack")
 	if Input.is_action_just_pressed("ui_attack") and not animation_player.is_playing():
 		animation_player.play("charge")
 	elif Input.is_action_just_released("ui_attack"):
