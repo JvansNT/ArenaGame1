@@ -2,8 +2,8 @@ extends Enemy
 
 const THROWABLE_KNIFE_SCENE: PackedScene = preload("res://characters/Enemy/Goblin/ThrowingKnife.tscn")
 
-const MAX_DISTANCE_TO_PLAYER: int = 50
-const MIN_DISTANCE_TO_PLAYER: int = 20
+const MAX_DISTANCE_TO_PLAYER: int = 60
+const MIN_DISTANCE_TO_PLAYER: int = 40
 
 export(int) var projectile_speed: int = 150
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://weapons/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://new_shader.gdshader" type="Shader" id=2]
@@ -20,13 +20,13 @@ tangential_accel = 80.0
 tangential_accel_random = 0.2
 
 [sub_resource type="Animation" id=3]
-resource_name = "Cancel"
+resource_name = "attack"
 
 [sub_resource type="Animation" id=4]
-resource_name = "Charge"
 
 [sub_resource type="Animation" id=5]
-resource_name = "Strong_attack"
+
+[sub_resource type="Animation" id=6]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,12 +45,12 @@ collision_layer = 0
 collision_mask = 12
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node/Sprite/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Sprite/Hitbox"]
 position = Vector2( 4.89071, -3.82727 )
 rotation = 0.785398
 disabled = true
 
-[node name="ChargeParticles" type="Particles2D" parent="Node/Sprite/Hitbox/CollisionShape2D2"]
+[node name="ChargeParticles" type="Particles2D" parent="Node/Sprite/Hitbox/CollisionShape2D"]
 position = Vector2( -0.845856, -1.12751 )
 rotation = -0.785398
 emitting = false
@@ -59,8 +59,9 @@ lifetime = 0.6
 process_material = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cancel = SubResource( 3 )
-anims/Charge = SubResource( 4 )
-anims/Strong_attack = SubResource( 5 )
+anims/attack = SubResource( 3 )
+anims/cancel_attack = SubResource( 4 )
+anims/charge = SubResource( 5 )
+anims/strong_attack = SubResource( 6 )
 
 [connection signal="area_entered" from="Node/Sprite/Hitbox" to="Node/Sprite/Hitbox" method="_on_Hitbox_area_entered"]

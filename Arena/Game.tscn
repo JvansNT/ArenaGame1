@@ -114,6 +114,6 @@ position = Vector2( 214.012, 99.0598 )
 position = Vector2( 57.211, 82.6381 )
 
 [node name="Goblin_spawn" parent="." instance=ExtResource( 3 )]
-position = Vector2( 394.19, 201.725 )
+position = Vector2( 411.671, 89.4217 )
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_Player_hp_changed"]

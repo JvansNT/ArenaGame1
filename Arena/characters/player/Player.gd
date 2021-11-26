@@ -1,5 +1,7 @@
 extends Character
 
+enum{UP, DOWN}
+
 var current_weapon: Node2D
 
 onready var weapons: Node2D = get_node("weapons")
@@ -28,7 +30,28 @@ func get_input() -> void:
 	if Input.is_action_pressed("ui_up"):
 		mov_direction += Vector2.UP
 		
+	if not current_weapon.is_busy():
+		if Input.is_action_just_released("ui_previous_weapon"):
+			_switch_weapon(UP)
+		elif Input.is_action_just_released("ui_next_weapon"):
+			_switch_weapon(DOWN)
+		
 	current_weapon.get_input()
 	
+func _switch_weapon(direction: int) -> void:
+	var index: int = current_weapon.get_index()
+	if direction == UP:
+		index -= 1
+		if index < 0:
+			index = weapons.get_child_count() - 1
+	else:
+		index += 1
+		if index > weapons.get_child_count() - 1:
+			index = 0
+	
+	current_weapon.hide()
+	current_weapon = weapons.get_child(index)
+	current_weapon.show()
+	
 func cancel_attack() -> void:
-	current_weapon.cancel_attack
+	current_weapon.cancel_attack()
