@@ -9,7 +9,7 @@ radius = 4.62904
 height = 7.50366
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 4.39119
+radius = 2.79922
 height = 10.2975
 
 [sub_resource type="Animation" id=3]
@@ -352,6 +352,7 @@ texture = ExtResource( 3 )
 
 [node name="Hitbox" parent="Node/Sprite" index="0"]
 collision_layer = 8
+damage = 2
 
 [node name="CollisionShape2D" parent="Node/Sprite/Hitbox" index="0"]
 position = Vector2( 6.47991, -5.41647 )
